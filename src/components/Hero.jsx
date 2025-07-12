@@ -5,46 +5,49 @@ import { faArrowDown, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icon
 import humanImage from '../assets/human.avif'
 
 const Hero = () => {
-  const scrollingTextRef = useRef(null)
+ const scrollRef = useRef(null)
   const [showLinkTree, setShowLinkTree] = useState(false)
 
-  useEffect(() => {
-    // Infinite scrolling animation for the name - continuous movement with 3x speed
-    const scrollingText = scrollingTextRef.current
-    if (scrollingText) {
-      const animation = scrollingText.animate([
-        { transform: 'translateX(0%)' },
-        { transform: 'translateX(-100%)' }
+ useEffect(() => {
+    const el = scrollRef.current
+    if (el) {
+      const animation = el.animate([
+        { transform: 'translateX(0)' },
+        { transform: 'translateX(-50%)' }
       ], {
-        duration: 2700, // 3x faster (original was 8000)
+        duration: 10000, // adjust speed here
         iterations: Infinity,
         easing: 'linear'
       })
-      
+
       return () => animation.cancel()
     }
   }, [])
 
+  const name = "ABHISHEK SRIVASTAVA"
+
+
   return (
     <div className="relative min-h-screen overflow-hidden" style={{ backgroundColor: '#EBEBEA' }}>
       {/* Header with white background - rounded rectangle with negative margins and shadow */}
-   <header className="fixed top-3 left-3 right-3 z-30 bg-white py-4 px-6 flex justify-between items-center rounded-lg shadow-sm">
+<header className="fixed top-3 left-3 right-3 z-30 bg-white py-2 px-4 flex justify-between items-center rounded-lg shadow-sm">
   <div className="flex items-center">
-    <div className="w-8 h-8 bg-black flex items-center justify-center text-white font-bold mr-4">
+    <div className="w-6 h-6 bg-black flex items-center justify-center text-white text-xs font-bold mr-2">
       MC
     </div>
-    <span className="font-medium text-black">
+    <span className="text-sm font-medium text-black leading-none">
       CREATIVE NOMAD, DESIGNING DIGITAL PRODUCTS & BRANDS.
     </span>
   </div>
   <button 
-    className="px-4 py-2 flex items-center text-black font-medium gap-2"
+    className="px-3 py-1 text-sm flex items-center text-black font-medium gap-1"
     onClick={() => setShowLinkTree(!showLinkTree)}
   >
     <FontAwesomeIcon icon={faExternalLinkAlt} />
     LINK TREE
   </button>
 </header>
+
 
 
       {/* Link Tree Header - Appears with animation when button is clicked */}
@@ -122,25 +125,25 @@ const Hero = () => {
       {/* Main Content */}
       <div className="relative z-10 min-h-screen flex flex-col justify-center items-center pt-16">
         {/* Scrolling Name Text - Behind the image */}
-        <div className="absolute inset-0 flex items-center justify-center z-0">
-          <div className="relative w-full overflow-hidden">
-            <div 
-              ref={scrollingTextRef}
-              className="whitespace-nowrap text-[18rem] font-black tracking-wider"
-              style={{ 
+       <div className="absolute inset-0 flex items-center justify-center z-0">
+      <div className="relative w-full overflow-hidden">
+        <div ref={scrollRef} className="flex w-max">
+          {[...Array(2)].map((_, i) => (
+            <div
+              key={i}
+              className="whitespace-nowrap text-[12rem] sm:text-[18rem] tracking-[0.2em] font-black"
+              style={{
+                fontFamily: '"Migaela", Impact, sans-serif',
                 color: '#010101',
-                fontFamily: '"Eltirg", cursive, Impact, "Arial Black", sans-serif',
-                textTransform: 'uppercase',
-                letterSpacing: '0.1em',
-                fontWeight: '900',
-                transform: 'translateX(0%)'
+                paddingRight: '4rem',
               }}
             >
-              ABHISHEK SRIVASTAVA ABHISHEK SRIVASTAVA ABHISHEK SRIVASTAVA ABHISHEK SRIVASTAVA
+              {name}
             </div>
-          </div>
+          ))}
         </div>
-
+      </div>
+    </div>
         {/* Portrait Image - Center bottom, much bigger */}
         <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 z-10">
           <motion.img
@@ -151,51 +154,66 @@ const Hero = () => {
         </div>
 
         {/* Honors Badge - Rotated -90 degrees and centered on right */}
-        <div className="fixed right-8 top-1/2 transform -translate-y-1/2 z-20">
-          <div 
-            className="w-32 h-12 flex items-center justify-between px-4 text-white font-bold text-sm tracking-wider"
-            style={{ 
-              backgroundColor: '#010101',
-              transform: 'rotate(-90deg)',
-              fontFamily: 'sans-serif'
-            }}
-          >
-            <span>HONORS</span>
-            <div className="w-6 h-6 bg-white flex items-center justify-center">
-              <span className="text-black font-bold text-xs">A</span>
-            </div>
-          </div>
-        </div>
+  <div className="fixed right-5 top-1/2 transform -translate-y-1/2 translate-x-1/2 z-20 rounded-xl">
+  <div 
+    className="w-40 h-16 flex items-center justify-between px-6 text-white font-bold text-sm tracking-wider rounded-l-lg"
+    style={{ 
+      backgroundColor: '#010101',
+      transform: 'rotate(-90deg)',
+      transformOrigin: 'center',
+      fontFamily: 'sans-serif',
+    }}
+  >
+    <span>HONORS</span>
+    <div className="w-6 h-6 bg-white flex items-center justify-center rounded-sm">
+      <span className="text-black font-bold text-xs">A</span>
+    </div>
+  </div>
+</div>
+
 
         {/* Scroll Down Indicator - Smaller square box with FontAwesome arrow */}
-        <motion.div 
-          className="fixed bottom-8 left-8 flex items-center space-x-3 z-20"
-          initial={{ y: -20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 1, duration: 0.5 }}
-        >
-          <div 
-            className="w-8 h-8 border-2 flex items-center justify-center relative overflow-hidden"
-            style={{ borderColor: '#010101' }}
-          >
-            <motion.div
-              animate={{ y: [-5, 5, -5] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              className="w-4 h-4 relative flex items-center justify-center"
-            >
-              <FontAwesomeIcon icon={faArrowDown} size="sm" />
-            </motion.div>
-          </div>
-          <span 
-            className="text-sm font-medium tracking-wider" 
-            style={{ 
-              color: '#010101', 
-              fontFamily: 'sans-serif' 
-            }}
-          >
-            SCROLL DOWN
-          </span>
-        </motion.div>
+<motion.div 
+  className="fixed bottom-8 left-8 flex items-center space-x-3 z-20"
+  initial={{ y: -20, opacity: 0 }}
+  animate={{ y: 0, opacity: 1 }}
+  transition={{ delay: 1, duration: 0.5 }}
+>
+  <div 
+    className="w-8 h-8 border-2 flex items-center justify-center relative overflow-hidden rounded-md"
+    style={{ borderColor: '#010101' }}
+  >
+    <motion.div
+      initial={{ y: '-100%', opacity: 1 }}
+      animate={{ 
+        y: ['-100%', '0%', '0%', '100%'],
+        opacity: [1, 1, 1, 0] // no fade until moving down
+      }}
+      transition={{
+        duration: 2.5,
+        repeat: Infinity,
+        ease: "easeInOut",
+        times: [0, 0.3, 0.6, 1] // hold 1 second before fade
+      }}
+      className="w-4 h-4 absolute flex items-center justify-center"
+    >
+      <FontAwesomeIcon icon={faArrowDown} size="sm" style={{ color: '#010101' }} />
+    </motion.div>
+  </div>
+  <span 
+    className="text-sm font-medium tracking-wider" 
+    style={{ 
+      color: '#010101', 
+      fontFamily: 'sans-serif' 
+    }}
+  >
+    SCROLL DOWN
+  </span>
+</motion.div>
+
+
+
+
       </div>
     </div>
   )
