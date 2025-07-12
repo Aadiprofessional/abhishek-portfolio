@@ -5,6 +5,10 @@ import ParallaxAbout from '../components/ParallaxAbout'
 import Projects from '../components/Projects'
 import BottomNavbar from '../components/BottomNavbar'
 import WhiteTransition from '../components/WhiteTransition'
+import BlackTransition from '../components/BlackTransition'
+
+import ScrollFillSection from '../components/ScrollFillSection'
+
 
 const HomePage = () => {
   const containerRef = useRef(null)
@@ -56,6 +60,8 @@ const HomePage = () => {
           <>
             <WhiteTransition scrollProgress={aboutScrollProgress} />
             <Projects />
+            <BlackTransition scrollProgress={aboutScrollProgress} />
+            <ScrollFillSection />
             <BottomNavbar />
           </>
         )}
