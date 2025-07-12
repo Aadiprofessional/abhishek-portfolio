@@ -1,93 +1,127 @@
-import React, { useRef } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import React, { useRef, useState, useEffect } from 'react';
+import { FaArrowTurnDown, FaLock, FaTerminal } from 'react-icons/fa6';
 
 const Projects = () => {
-  const projectsRef = useRef(null)
+  const projects = Array.from({ length: 10 }, (_, index) => ({
+    name: `Project ${index + 1}`,
+    description: 'Branding, Website, UI/UX',
+  }));
 
-  // Detect scroll over the Projects section
-  const { scrollYProgress } = useScroll({
-    target: projectsRef,
-    offset: ['start start', 'end start'] // When top hits top → fully scrolled out
-  })
+  const tags = ['#TECH', '#CONSUMER', '#FINTECH', '#CRYPTO', '#NOCODE', '#SAAS', '#WEBAPP'];
 
-  // Animate a white top padding from 0px to 10px
-  const topPadding = useTransform(scrollYProgress, [0, 0.3], ['0px', '10px'])
-  const topOpacity = useTransform(scrollYProgress, [0, 0.1], [0, 1])
+  const headerRef = useRef(null);
+  const sentinelRef = useRef(null);
+  const [isSticky, setIsSticky] = useState(false);
 
-  const projects = [
-    { name: 'Barrett Plastic Surgery', description: 'Branding, Website' },
-    { name: 'MyStudio', description: 'Branding, Website, Art Direction' },
-    { name: 'Instead', description: 'Creative direction, UI/UX' }
-  ]
+  useEffect(() => {
+    let ticking = false;
 
-  const tags = ['#TECH', '#CONSUMER', '#FINTECH', '#CRYPTO', '#NOCODE', '#SAAS', '#WEBAPP']
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          if (sentinelRef.current) {
+            const rect = sentinelRef.current.getBoundingClientRect();
+            setIsSticky(rect.top <= 0);
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <div ref={projectsRef} className="w-full bg-white text-black px-6 md:px-20 py-20">
-      {/* Expanding White Space on Scroll */}
-      <motion.div
-        style={{ height: topPadding, opacity: topOpacity }}
-        className="w-full bg-white"
-      />
+    <section className="bg-white text-black rounded-t-xl shadow-lg relative">
+      {/* Sentinel element */}
+      <div ref={sentinelRef} className="absolute top-0 h-[1px] w-full pointer-events-none" />
 
-      <h2 className="text-5xl font-bold mb-12">↳ Projects</h2>
+      {/* Sticky header */}
+     {/* Placeholder to prevent layout jump */}
+{isSticky && <div style={{ height: headerRef.current?.offsetHeight }} />}
 
-      {/* Info */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-8 border-b pb-10 border-black/30 text-sm">
-        <div>
-          <h4 className="uppercase text-xs font-medium mb-2 text-gray-500">Timeframe</h4>
-          <p>YEAR 2022–23</p>
-        </div>
-        <div>
-          <h4 className="uppercase text-xs font-medium mb-2 text-gray-500">Discipline</h4>
-          <p>No code development</p>
-          <p>UI design</p>
-          <p>UX research</p>
-          <p>Art Direction</p>
-        </div>
-        <div>
-          <h4 className="uppercase text-xs font-medium mb-2 text-gray-500">Tools</h4>
-          <p>Webflow</p>
-          <p>After effect</p>
-          <p>Wized</p>
-        </div>
-        <div>
-          <h4 className="uppercase text-xs font-medium mb-2 text-gray-500">Industry</h4>
-          <div className="flex flex-wrap gap-2 mt-2">
-            {tags.map((tag, index) => (
-              <span
-                key={index}
-                className="border border-black text-xs px-2 py-1 rounded"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Project List */}
-      <div className="mt-12 space-y-10">
-        {projects.map((project, index) => (
-          <div
-            key={index}
-            className="flex justify-between items-center border-b pb-6 border-black/30"
-          >
-            <div className="flex items-center gap-4">
-              <span className="text-xl">⌘</span>
-              <h3 className="text-lg font-medium">
-                {project.name}{' '}
-                <span className="text-gray-500">— {project.description}</span>
-              </h3>
-            </div>
-            <button className="border px-4 py-2 text-xs font-medium rounded-full flex items-center gap-2 hover:bg-black hover:text-white transition">
-              🔒 Contact for Details
-            </button>
-          </div>
-        ))}
-      </div>
+{/* Sticky header */}
+<div
+  ref={headerRef}
+  className={`${
+    isSticky ? 'fixed top-0 left-0 right-0' : 'relative'
+  } bg-white/90 backdrop-blur-sm z-50 rounded-t-xl border-b border-gray-200 transition-all duration-200`}
+>
+  <div className="px-6 md:px-10 py-9 md:pt-18">
+    <div className="flex items-center gap-3">
+      <FaArrowTurnDown className="h-18 w-18 text-black" />
+      <h2 className="md:text-7xl font-regular">Projects</h2>
     </div>
-  )
-}
+  </div>
+</div>
 
-export default Projects
+
+      {/* Content */}
+      <div className="px-6 md:px-12">
+        <div className="mt-10 grid grid-cols-1 md:grid-cols-4 gap-8 border-b pb-10 border-gray-200 text-sm">
+          <div>
+            <h4 className="uppercase text-xs font-medium mb-3 text-gray-500 tracking-wider">Timeframe</h4>
+            <p>YEAR 2022–23</p>
+          </div>
+          <div>
+            <h4 className="uppercase text-xs font-medium mb-3 text-gray-500 tracking-wider">Discipline</h4>
+            <ul className="space-y-1">
+              <li>No code development</li>
+              <li>UI design</li>
+              <li>UX research</li>
+              <li>Art Direction</li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="uppercase text-xs font-medium mb-3 text-gray-500 tracking-wider">Tools</h4>
+            <ul className="space-y-1">
+              <li>Webflow</li>
+              <li>After effect</li>
+              <li>Wized</li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="uppercase text-xs font-medium mb-3 text-gray-500 tracking-wider">Industry</h4>
+            <div className="flex flex-wrap gap-2 mt-2">
+              {tags.map((tag, index) => (
+                <span
+                  key={index}
+                  className="text-xs font-medium border border-gray-300 text-gray-700 px-2 py-1 rounded-md"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Projects list with conditional padding for sticky */}
+       <div className="mt-12 space-y-6 pb-20">
+
+          {projects.map((project, index) => (
+            <div
+              key={index}
+              className="flex flex-col md:flex-row justify-between md:items-center gap-4 border-b pb-6 border-gray-200"
+            >
+              <div className="flex items-start md:items-center gap-4">
+                <FaTerminal className="w-5 h-5 text-gray-400 flex-shrink-0 mt-1 md:mt-0" />
+                <div>
+                  <h3 className="text-lg font-semibold">{project.name}</h3>
+                  <p className="text-gray-500 text-sm">{project.description}</p>
+                </div>
+              </div>
+              <button className="w-full md:w-auto flex-shrink-0 border border-gray-300 rounded-md px-4 py-2 text-sm font-medium flex items-center gap-2 hover:bg-gray-50 transition-colors">
+                <FaLock className="h-3 w-3" />
+                Contact for Details
+              </button>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Projects;

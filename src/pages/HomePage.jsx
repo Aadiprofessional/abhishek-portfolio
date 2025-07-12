@@ -1,40 +1,65 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
+import { useScroll, useMotionValueEvent } from 'framer-motion'
 import Hero from '../components/Hero'
 import ParallaxAbout from '../components/ParallaxAbout'
 import Projects from '../components/Projects'
 import BottomNavbar from '../components/BottomNavbar'
 import WhiteTransition from '../components/WhiteTransition'
-import { useScroll } from 'framer-motion'
 
 const HomePage = () => {
+  const containerRef = useRef(null)
   const aboutRef = useRef(null)
+  const [isMounted, setIsMounted] = useState(false)
+  const [heroVisible, setHeroVisible] = useState(true)
+  
+  // Ensure component is mounted before using scroll hooks
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
 
-  const { scrollYProgress } = useScroll({
-    target: aboutRef,
-    offset: ['start end', 'end start'] // track as ParallaxAbout scrolls
+  const { scrollY } = useScroll({
+    container: isMounted ? containerRef : null,
+  })
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    if (latest > window.innerHeight * 0.8) {
+      setHeroVisible(false)
+    } else {
+      setHeroVisible(true)
+    }
+  })
+
+  const { scrollYProgress: aboutScrollProgress } = useScroll({
+    target: isMounted ? aboutRef : null,
+    offset: ['start end', 'end start']
   })
 
   return (
-    <div className="relative">
-      <div className="fixed inset-0 z-0">
-        <Hero />
-      </div>
+    <div className="relative w-full" ref={containerRef}>
+      {/* Hero background - fixed position */}
+      {heroVisible && (
+        <div className="fixed inset-0 z-0">
+          <Hero />
+        </div>
+      )}
 
+      {/* Spacer to push content below hero */}
       <div className="h-screen" />
 
-      <div className="relative z-10" ref={aboutRef}>
-        <ParallaxAbout />
-      </div>
-
+      {/* Scrollable content container */}
       <div className="relative z-10">
-        <WhiteTransition scrollProgress={scrollYProgress} />
-      </div>
+        <div ref={aboutRef}>
+          <ParallaxAbout />
+        </div>
 
-      <div className="relative z-10">
-        <Projects />
+        {isMounted && (
+          <>
+            <WhiteTransition scrollProgress={aboutScrollProgress} />
+            <Projects />
+            <BottomNavbar />
+          </>
+        )}
       </div>
-
-      <BottomNavbar />
     </div>
   )
 }
