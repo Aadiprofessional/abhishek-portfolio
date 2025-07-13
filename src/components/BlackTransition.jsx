@@ -12,7 +12,7 @@ const BlackTransition = () => {
   })
 
   // Height increases from 0 to 192px after 20% scroll
-  const height = useTransform(scrollYProgress, [0, 0.4], [0, 192])
+  const height = useTransform(scrollYProgress, [0.6, 0.8], [76, 192])
   const opacity = useTransform(scrollYProgress, [0.3, 0.3], [0, 1])
 
   useEffect(() => {

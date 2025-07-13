@@ -8,6 +8,12 @@ import WhiteTransition from '../components/WhiteTransition'
 import BlackTransition from '../components/BlackTransition'
 
 import ScrollFillSection from '../components/ScrollFillSection'
+import WebGrid from '../components/Webgrid'
+import GridSection from '../components/Webgrid'
+import WebflowShowcase from '../components/WebflowShowcase'
+import CatchMeButton from '../components/CatchMeButton'
+import TestimonialsSection from '../components/TestimonialsSection'
+import Footer from '../components/Footer'
 
 
 const HomePage = () => {
@@ -61,7 +67,12 @@ const HomePage = () => {
             <WhiteTransition scrollProgress={aboutScrollProgress} />
             <Projects />
             <BlackTransition scrollProgress={aboutScrollProgress} />
-            <ScrollFillSection />
+
+            <GridSection />
+            <WebflowShowcase/>
+            <CatchMeButton/>
+            <TestimonialsSection/>
+            <Footer/>
             <BottomNavbar />
           </>
         )}
