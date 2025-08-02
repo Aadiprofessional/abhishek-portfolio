@@ -1,62 +1,55 @@
-import React, { useRef, useState, useEffect } from 'react'
-import { useScroll, useMotionValueEvent } from 'framer-motion'
-import Hero from '../components/Hero'
-import ParallaxAbout from '../components/ParallaxAbout'
-import Projects from '../components/Projects'
-import BottomNavbar from '../components/BottomNavbar'
-import WhiteTransition from '../components/WhiteTransition'
-import BlackTransition from '../components/BlackTransition'
+import React, { useRef, useEffect, useState } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
-import ScrollFillSection from '../components/ScrollFillSection'
-import WebGrid from '../components/Webgrid'
-import GridSection from '../components/Webgrid'
-import WebflowShowcase from '../components/WebflowShowcase'
-import CatchMeButton from '../components/CatchMeButton'
-import TestimonialsSection from '../components/TestimonialsSection'
-import Footer from '../components/Footer'
-
+import Hero from '../components/Hero';
+import ParallaxAbout from '../components/ParallaxAbout';
+import Projects from '../components/Projects';
+import BottomNavbar from '../components/BottomNavbar';
+import WhiteTransition from '../components/WhiteTransition';
+import BlackTransition from '../components/BlackTransition';
+import GridSection from '../components/Webgrid';
+import WebflowShowcase from '../components/WebflowShowcase';
+import CatchMeButton from '../components/CatchMeButton';
+import TestimonialsSection from '../components/TestimonialsSection';
+import Footer from '../components/Footer';
 
 const HomePage = () => {
-  const containerRef = useRef(null)
-  const aboutRef = useRef(null)
-  const [isMounted, setIsMounted] = useState(false)
-  const [heroVisible, setHeroVisible] = useState(true)
-  
-  // Ensure component is mounted before using scroll hooks
+  const containerRef = useRef(null);
+  const aboutRef = useRef(null);
+  const [isMounted, setIsMounted] = useState(false);
+
   useEffect(() => {
-    setIsMounted(true)
-  }, [])
+    setIsMounted(true);
+  }, []);
 
-  const { scrollY } = useScroll({
-    container: isMounted ? containerRef : null,
-  })
+  const { scrollY } = useScroll(); // Global scroll
+  const heroOpacity = useTransform(scrollY, [1000, 1200], [1, 0]);
 
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    if (latest > window.innerHeight * 0.8) {
-      setHeroVisible(false)
-    } else {
-      setHeroVisible(true)
-    }
-  })
-
+  // Local scroll progress for ParallaxAbout section
   const { scrollYProgress: aboutScrollProgress } = useScroll({
-    target: isMounted ? aboutRef : null,
-    offset: ['start end', 'end start']
-  })
+    target: aboutRef,
+    offset: ['start end', 'end start'],
+  });
 
   return (
-    <div className="relative w-full" ref={containerRef}>
-      {/* Hero background - fixed position */}
-      {heroVisible && (
-        <div className="fixed inset-0 z-0">
-          <Hero />
-        </div>
-      )}
+    <div className="relative w-full overflow-x-hidden" ref={containerRef}>
+      {/* Fixed Hero Background (fade out on scroll) */}
+      <motion.div
+        className="fixed inset-0 z-[0] pointer-events-none"
+        style={{ opacity: heroOpacity }}
+      >
+        <Hero />
+      </motion.div>
 
-      {/* Spacer to push content below hero */}
+      {/* Fixed Footer Background (always behind) */}
+      <div className="fixed inset-0 z-[-10] pointer-events-none">
+        <Footer />
+      </div>
+
+      {/* Spacer for Hero */}
       <div className="h-screen" />
 
-      {/* Scrollable content container */}
+      {/* Main Scrollable Content */}
       <div className="relative z-10">
         <div ref={aboutRef}>
           <ParallaxAbout />
@@ -67,18 +60,20 @@ const HomePage = () => {
             <WhiteTransition scrollProgress={aboutScrollProgress} />
             <Projects />
             <BlackTransition scrollProgress={aboutScrollProgress} />
-
             <GridSection />
-            <WebflowShowcase/>
-            <CatchMeButton/>
-            <TestimonialsSection/>
-            <Footer/>
-            <BottomNavbar />
+            <WebflowShowcase />
+            <CatchMeButton />
+            <TestimonialsSection />
+
+            {/* Spacer for Footer */}
+            <div className="h-[100vh]" />
           </>
         )}
+
+        <BottomNavbar />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default HomePage
+export default HomePage;
