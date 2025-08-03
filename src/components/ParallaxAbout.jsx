@@ -55,34 +55,34 @@ const ParallaxAbout = () => {
               About
             </motion.h2>
 
-            <motion.div
-              style={{ y: contentY, opacity: contentOpacity }}
-              className="flex flex-col md:w-3/4"
-            >
-              <p className="text-lg md:text-2xl leading-relaxed mb-6">
-                <strong className="font-semibold">Matthis</strong>{' '}
-                <span className="text-gray-400 text-base">(HE/HIM)</span> is a nomad product and brand designer with a passion
-                for art and technology. He uses Webflow and other low-code tools to create stunning, one-of-a-kind pieces that come to life on the internet.
-              </p>
-              <p className="text-lg md:text-2xl leading-relaxed mb-6">
-                Currently residing in the lush jungle of Mexico, Matthis operates globally and is ready to take on any design challenge.
-              </p>
-              <p className="text-xs tracking-wider uppercase text-white/60 mt-4 mb-8">
-                BUILDING PRODUCTS AT THE CROSSPATHS OF AI — SAAS — WEB3.
-              </p>
+           <motion.div
+  style={{ y: contentY, opacity: contentOpacity }}
+  className="flex flex-col md:w-3/4"
+>
+  <p className="text-lg md:text-2xl leading-relaxed mb-6">
+    <strong className="font-semibold">Abhishek</strong>{' '}
+    <span className="text-gray-400 text-base">(HE/HIM)</span> is a self-driven full-stack developer who has independently built and launched multiple mobile apps and web platforms from scratch — from UI to backend, deployment to analytics.
+  </p>
+  <p className="text-lg md:text-2xl leading-relaxed mb-6">
+    He has developed and deployed production-grade platforms like <strong>Stimuler</strong>, <strong>CrossBee</strong>, <strong>MatrixAI</strong>, <strong>MatrixEdu</strong>, <strong>ToolsBazaar</strong>, and more — used by thousands and scaled across iOS, Android, and the web.
+  </p>
+  <p className="text-xs tracking-wider uppercase text-white/60 mt-4 mb-8">
+    BUILDING SCALABLE PRODUCTS ACROSS MOBILE — WEB — BACKEND INFRASTRUCTURE.
+  </p>
 
-              <div className="border border-white/20 bg-white/5 backdrop-blur-md rounded-xl p-6 w-full max-w-md">
+   <div className="border border-white/20 bg-white/5 backdrop-blur-md rounded-xl p-6 w-full max-w-md">
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center text-white text-xl font-bold">
-                    W.
+                    AS
                   </div>
                   <div>
-                    <p className="text-lg font-medium">Senior Design Director</p>
-                    <p className="text-sm text-white/50">SVZ</p>
+                    <p className="text-lg font-medium">Software Development Engineer</p>
+                    <p className="text-sm text-white/50">MatrixAI</p>
                   </div>
                 </div>
               </div>
-            </motion.div>
+</motion.div>
+
           </div>
         </div>
       </motion.div>

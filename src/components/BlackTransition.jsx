@@ -48,10 +48,10 @@ const BlackTransition = () => {
             className="flex whitespace-nowrap text-9xl font-bold text-white min-w-[200%]"
           >
             <span className="px-4">
-              🔥 SUPER BADASS 🔥 SUPER BADASS 🔥 SUPER BADASS 🔥 SUPER BADASS 🔥
+              🔥 AADI SRIVASTAVA 🔥 ANDROID 🔥 WEBSITE 🔥 IOS 🔥
             </span>
             <span className="px-4">
-              🔥 SUPER BADASS 🔥 SUPER BADASS 🔥 SUPER BADASS 🔥 SUPER BADASS 🔥
+              🔥 NODE 🔥 FIREBASE 🔥 GOOGLE CLOUD 🔥 SUPABASE 🔥
             </span>
           </motion.div>
         </div>

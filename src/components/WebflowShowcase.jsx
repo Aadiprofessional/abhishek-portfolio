@@ -1,14 +1,24 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
+import { personalInfo, skills } from '../data/personalData'
 
-const logos = [
+const technologies = [
+  'React Native',
+  'TypeScript',
+  'OpenAI API',
+  'Firebase',
+  'Node.js',
+  'Python',
+  'AI/ML'
+]
+
+const companies = [
+  'MatrixAI',
+  'AppYard',
+  'Google Play',
+  'Apple Store',
   'GitHub',
-  'zendesk',
-  'DELL',
-  'Rakuten',
-  'TED',
-  'Upwork',
-  'The New York Times'
+  'AWS'
 ]
 
 const WebflowShowcase = () => {
@@ -24,20 +34,36 @@ const WebflowShowcase = () => {
         className="text-2xl md:text-3xl font-medium text-black text-left max-w-6xl mx-auto"
         style={{ fontFamily: "'Inter', sans-serif" }}
       >
-        They are using <span className="font-semibold">Webflow</span> to build websites and webapps —{' '}
-        <span className="text-gray-400">Just like me.</span>
+        I build <span className="font-semibold">AI-powered applications</span> using cutting-edge technologies —{' '}
+        <span className="text-gray-400">Serving {personalInfo.appDownloads} users worldwide.</span>
       </motion.p>
 
-      <div className="mt-10 max-w-6xl mx-auto flex flex-wrap items-center gap-10">
-        {logos.map((name, index) => (
-          <div
-            key={index}
-            className="text-black text-xl font-semibold"
-            style={{ fontFamily: "'Inter', sans-serif" }}
-          >
-            {name}
-          </div>
-        ))}
+      <div className="mt-10 max-w-6xl mx-auto">
+        <h3 className="text-lg font-semibold text-gray-600 mb-4">Technologies I Use</h3>
+        <div className="flex flex-wrap items-center gap-6 mb-8">
+          {technologies.map((tech, index) => (
+            <div
+              key={index}
+              className="text-black text-lg font-semibold bg-gray-100 px-4 py-2 rounded-lg"
+              style={{ fontFamily: "'Inter', sans-serif" }}
+            >
+              {tech}
+            </div>
+          ))}
+        </div>
+        
+        <h3 className="text-lg font-semibold text-gray-600 mb-4">Platforms & Companies</h3>
+        <div className="flex flex-wrap items-center gap-6">
+          {companies.map((company, index) => (
+            <div
+              key={index}
+              className="text-black text-xl font-semibold"
+              style={{ fontFamily: "'Inter', sans-serif" }}
+            >
+              {company}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   )

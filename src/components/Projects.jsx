@@ -1,14 +1,45 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { FaArrowTurnDown, FaLock, FaTerminal } from 'react-icons/fa6';
+import { FaArrowTurnDown, FaTerminal, FaLock } from 'react-icons/fa6';
+import { projects as projectsData } from '../data/personalData';
+import MatrixAIImg from '../assets/MatrixAI.png';
+import MatrixAIGlobalImg from '../assets/MatrixAIGlobal.png';
+import MatrixEduImg from '../assets/MatrixEdu.png';
+import MatrixTwinImg from '../assets/MatrixTwin.png';
+import CrossBeeImg from '../assets/CrossBee.png';
+import ToolsbazaarImg from '../assets/Toolsbazaar.png';
+import AIToyImg from '../assets/AI TOY.png';
+import StimulerImg from '../assets/Stimuler.png';
+import SamvaadImg from '../assets/Samvaad.png';
 
 const Projects = () => {
-  const projects = Array.from({ length: 10 }, (_, index) => ({
-    name: `Project ${index + 1}`,
-    description: 'Branding, Website, UI/UX',
-    image: `https://picsum.photos/800/500?random=${index}`,
+  // Project images mapping
+  const projectImages = {
+    'matrix-ai': MatrixAIImg,
+    'matrixedu': MatrixEduImg,
+    'matrixtwin': MatrixTwinImg,
+    'crossbee': CrossBeeImg,
+
+    'toolsbazaar': ToolsbazaarImg,
+    'matrixai-global': MatrixAIGlobalImg,
+    'aitoy': AIToyImg,
+    'stimuler': StimulerImg,
+    'samvaad': SamvaadImg
+  };
+
+  const projects = projectsData.map(project => ({
+    name: project.title,
+    description: project.category,
+    image: projectImages[project.id] || `https://picsum.photos/800/500?random=${project.id}`,
+    technologies: project.technologies,
+    status: project.status,
+    github: project.github,
+    demo: project.demo,
+    playStore: project.playStore,
+    appStore: project.appStore,
+    adminPanel: project.adminPanel
   }));
 
-  const tags = ['#TECH', '#CONSUMER', '#FINTECH', '#CRYPTO', '#NOCODE', '#SAAS', '#WEBAPP'];
+  const tags = ['#AI/ML', '#MOBILE', '#REACT', '#NODEJS', '#TYPESCRIPT', '#FIREBASE', '#WEBAPP'];
 
   const headerRef = useRef(null);
   const topSentinelRef = useRef(null);
@@ -101,41 +132,48 @@ const Projects = () => {
       <div className="px-6 md:px-12">
         {/* Project Meta Info */}
         <div className="mt-10 w-[70%]">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div>
-              <h4 className="uppercase text-xs font-medium mb-4 text-gray-500 tracking-wider">TIMEFRAME</h4>
-              <p className="text-sm">YEAR 2022-23</p>
-            </div>
-            <div>
-              <h4 className="uppercase text-xs font-medium mb-4 text-gray-500 tracking-wider">DISCIPLINE</h4>
-              <ul className="space-y-2 text-sm">
-                <li>No code development</li>
-                <li>UI design</li>
-                <li>UX research</li>
-                <li>Art Direction</li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="uppercase text-xs font-medium mb-4 text-gray-500 tracking-wider">TOOLS</h4>
-              <ul className="space-y-2 text-sm">
-                <li>Webflow</li>
-                <li>After effect</li>
-                <li>Webflow</li>
-                <li>Wized</li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="uppercase text-xs font-medium mb-4 text-gray-500 tracking-wider">INDUSTRY</h4>
-              <div className="flex flex-wrap gap-2">
-                {tags.map((tag, index) => (
-                  <span key={index} className="text-xs font-medium border border-gray-200 text-gray-700 px-2.5 py-1 rounded-md">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
+  <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+    <div>
+      <h4 className="uppercase text-xs font-medium mb-4 text-gray-500 tracking-wider">TIMEFRAME</h4>
+      <p className="text-sm">YEAR 2023–25</p>
+    </div>
+    <div>
+      <h4 className="uppercase text-xs font-medium mb-4 text-gray-500 tracking-wider">DISCIPLINE</h4>
+      <ul className="space-y-2 text-sm">
+        <li>Full-stack development</li>
+        <li>Mobile apps (iOS/Android)</li>
+        <li>AI/ML integration</li>
+        <li>E-commerce platforms</li>
+        <li>Admin panel & dashboards</li>
+        <li>Web & cloud infrastructure</li>
+      </ul>
+    </div>
+    <div>
+      <h4 className="uppercase text-xs font-medium mb-4 text-gray-500 tracking-wider">TOOLS</h4>
+      <ul className="space-y-2 text-sm">
+        <li>React Native / React.js</li>
+        <li>Node.js / Express / TypeScript</li>
+        <li>AI APIs / OpenAI / Speech Recognition</li>
+        <li>Firebase / Supabase / MongoDB</li>
+        <li>Three.js / WebGL / Digital Twins</li>
+        <li>Payment Gateways / Real-time Processing</li>
+      </ul>
+    </div>
+    <div>
+      <h4 className="uppercase text-xs font-medium mb-4 text-gray-500 tracking-wider">PROJECT TYPES</h4>
+      <div className="flex flex-wrap gap-2">
+        <span className="text-xs font-medium border border-gray-200 text-gray-700 px-2.5 py-1 rounded-md">#AI/ML Apps</span>
+        <span className="text-xs font-medium border border-gray-200 text-gray-700 px-2.5 py-1 rounded-md">#Mobile Apps</span>
+        <span className="text-xs font-medium border border-gray-200 text-gray-700 px-2.5 py-1 rounded-md">#E-commerce</span>
+        <span className="text-xs font-medium border border-gray-200 text-gray-700 px-2.5 py-1 rounded-md">#Web Platforms</span>
+        <span className="text-xs font-medium border border-gray-200 text-gray-700 px-2.5 py-1 rounded-md">#Admin Panels</span>
+        <span className="text-xs font-medium border border-gray-200 text-gray-700 px-2.5 py-1 rounded-md">#Enterprise Solutions</span>
+        <span className="text-xs font-medium border border-gray-200 text-gray-700 px-2.5 py-1 rounded-md">#Educational Platforms</span>
+      </div>
+    </div>
+  </div>
+</div>
+
 
         {/* Fixed image preview */}
         <div 
@@ -181,14 +219,83 @@ const Projects = () => {
                 </div>
               </div>
 
-              <button className={`w-full md:w-auto border rounded-md px-4 py-2 text-sm font-medium flex items-center gap-2 ${
-                activeProject === index
-                  ? 'border-white bg-white text-black hover:bg-gray-100'
-                  : 'border-gray-300 text-gray-700 hover:bg-gray-50'
-              }`}>
-                <FaLock className="h-3 w-3" />
-                Contact for Details
-              </button>
+              <div className="flex flex-wrap gap-2">
+                {project.demo && (
+                  <a
+                    href={project.demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`border rounded-md px-3 py-2 text-xs font-medium flex items-center gap-2 ${
+                      activeProject === index
+                        ? 'border-white bg-white text-black hover:bg-gray-100'
+                        : 'border-gray-300 text-gray-700 hover:bg-gray-50'
+                    }`}
+                  >
+                    <FaArrowTurnDown className="h-3 w-3" />
+                    Demo
+                  </a>
+                )}
+                {project.github && (
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`border rounded-md px-3 py-2 text-xs font-medium flex items-center gap-2 ${
+                      activeProject === index
+                        ? 'border-white bg-white text-black hover:bg-gray-100'
+                        : 'border-gray-300 text-gray-700 hover:bg-gray-50'
+                    }`}
+                  >
+                    <FaTerminal className="h-3 w-3" />
+                    GitHub
+                  </a>
+                )}
+                {project.playStore && (
+                  <a
+                    href={project.playStore}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`border rounded-md px-3 py-2 text-xs font-medium flex items-center gap-2 ${
+                      activeProject === index
+                        ? 'border-white bg-white text-black hover:bg-gray-100'
+                        : 'border-gray-300 text-gray-700 hover:bg-gray-50'
+                    }`}
+                  >
+                    📱
+                    Play Store
+                  </a>
+                )}
+                {project.appStore && (
+                  <a
+                    href={project.appStore}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`border rounded-md px-3 py-2 text-xs font-medium flex items-center gap-2 ${
+                      activeProject === index
+                        ? 'border-white bg-white text-black hover:bg-gray-100'
+                        : 'border-gray-300 text-gray-700 hover:bg-gray-50'
+                    }`}
+                  >
+                    🍎
+                    App Store
+                  </a>
+                )}
+                {project.adminPanel && (
+                  <a
+                    href={project.adminPanel}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`border rounded-md px-3 py-2 text-xs font-medium flex items-center gap-2 ${
+                      activeProject === index
+                        ? 'border-white bg-white text-black hover:bg-gray-100'
+                        : 'border-gray-300 text-gray-700 hover:bg-gray-50'
+                    }`}
+                  >
+                    <FaLock className="h-3 w-3" />
+                    Admin
+                  </a>
+                )}
+              </div>
             </div>
           ))}
         </div>

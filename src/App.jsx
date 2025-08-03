@@ -22,6 +22,7 @@ import EduSmartPage from './pages/projects/EduSmartPage'
 import BuildSpherePage from './pages/projects/BuildSpherePage'
 import AiToyPage from './pages/projects/AiToyPage'
 import BottomNavbar from './components/BottomNavbar'
+import ScrollToTop from './components/ScrollToTop'
 
 const AnimatedRoutes = () => {
   const location = useLocation()
@@ -69,6 +70,7 @@ function App() {
 
       {/* ⬇️ Move this here */}
       <BottomNavbar />
+      <ScrollToTop />
     </Router>
   )
 }

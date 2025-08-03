@@ -72,7 +72,7 @@ const CatchMeButton = () => {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  // Smooth follow effect
+  // Auto-catch effect - box automatically moves to cursor
   useEffect(() => {
     let raf;
     const followCursor = () => {
@@ -80,8 +80,8 @@ const CatchMeButton = () => {
         const dx = mousePos.x - prev.x;
         const dy = mousePos.y - prev.y;
         return {
-           x: prev.x + dx * 0.03, // slower = 0.02 or 0.01
-  y: prev.y + dy * 0.03,
+           x: prev.x + dx * 0.15, // faster auto-catch
+           y: prev.y + dy * 0.15,
         };
       });
       raf = requestAnimationFrame(followCursor);
@@ -131,8 +131,8 @@ const CatchMeButton = () => {
 
 
       <motion.div
-  className="absolute z-20 w-72 h-36 rounded-3xl overflow-hidden flex items-center justify-center shadow-lg"
-  variants={contentVariants} // <- fade in with main content
+  className="absolute z-20 w-72 h-36 rounded-3xl overflow-hidden flex items-center justify-center shadow-lg cursor-pointer"
+  variants={contentVariants}
   style={{
     left: boxPos.x,
     top: boxPos.y,
@@ -142,20 +142,16 @@ const CatchMeButton = () => {
     backgroundSize: 'cover',
     backgroundPosition: 'center',
   }}
+  onClick={() => window.open('https://wa.me/919289881135', '_blank')}
 >
   {
-    // Immediately switch to ping message when box is close enough to cursor
-    Math.hypot(boxPos.x - mousePos.x, boxPos.y - mousePos.y) < 30 ? (
+    // Auto-catch when box gets close to cursor
+    Math.hypot(boxPos.x - mousePos.x, boxPos.y - mousePos.y) < 50 ? (
       <div className="flex flex-col items-center justify-center space-y-2 w-full h-full">
-        <div className="text-3xl">🐸 🐯 🙈</div>
-        <button
-          className="bg-black text-white px-4 py-2 rounded-full text-sm font-medium shadow-md"
-          onClick={() =>
-            (window.location.href = 'mailto:aadiprofessional8@gmail.com')
-          }
-        >
-          Ping a message →
-        </button>
+        <div className="text-3xl">📱 💬 ✨</div>
+        <div className="bg-black text-white px-4 py-2 rounded-full text-sm font-medium shadow-md">
+          WhatsApp Me →
+        </div>
       </div>
     ) : (
       <span className="text-5xl font-extrabold text-green-900">CATCH ME</span>
@@ -180,18 +176,16 @@ const CatchMeButton = () => {
             className="text-[7vw] sm:text-[5vw] md:text-[4vw] font-bold leading-tight space-y-6"
             variants={contentVariants}
           >
-            <motion.div variants={contentVariants}>ALL YOU NEED IS</motion.div>
+            <motion.div variants={contentVariants}>BUILDING THE FUTURE</motion.div>
             <motion.div className="flex items-center gap-4" variants={contentVariants}>
-              <span>A</span>
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Webflow_logo.svg/1024px-Webflow_logo.svg.png"
-                alt="Webflow Logo"
-                className="w-14 h-14 rounded-lg"
-              />
-              <span>WEBFLOW</span>
+              <span>WITH</span>
+              <div className="w-14 h-14 rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-lg">
+                AI
+              </div>
+              <span>INNOVATION</span>
             </motion.div>
             <motion.div className="flex items-center gap-3" variants={contentVariants}>
-              SITE <FaArrowUpRightFromSquare />
+              & CODE <FaArrowUpRightFromSquare />
             </motion.div>
           </motion.div>
         </motion.div>

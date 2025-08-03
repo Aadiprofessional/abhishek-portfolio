@@ -75,11 +75,11 @@ const Hero = () => {
 <header className="fixed top-3 left-3 right-3 z-30 bg-white py-2 px-4 flex justify-between items-center rounded-lg shadow-sm">
   <div className="flex items-center">
     <div className="w-6 h-6 bg-black flex items-center justify-center text-white text-xs font-bold mr-2">
-      MC
+      AS
     </div>
     {/* 👇 This is the line that was changed */}
     <span className="text-xs sm:text-sm font-medium text-black leading-none">
-      CREATIVE NOMAD, DESIGNING DIGITAL PRODUCTS & BRANDS.
+      FULL-STACK DEVELOPER, WEBSITE, IOS & ANDROID APPS.
     </span>
   </div>
   <button 
@@ -109,10 +109,10 @@ const Hero = () => {
         {/* Link Buttons */}
         <div className="flex flex-1 flex-col sm:flex-row items-center justify-between gap-2 sm:gap-6" style={{ pointerEvents: 'auto' }}>
           {[
-            { name: 'Instagram', link: 'https://instagram.com' },
-            { name: 'Webflow', link: 'https://webflow.com' },
-            { name: 'My course', link: '#course' },
-            { name: 'Twitter', link: 'https://twitter.com' },
+            { name: 'GitHub', link: 'https://github.com/Aadiprofessional' },
+            { name: 'LinkedIn', link: 'https://www.linkedin.com/in/abhishek-srivastava-236843193?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app' },
+            { name: 'WhatsApp', link: 'https://wa.me/919289881135' },
+            { name: 'Email', link: 'mailto:abhishek.kvoc@gmail.com' },
           ].map(({ name, link }) => (
             <a
               key={name}
@@ -183,8 +183,8 @@ const Hero = () => {
               letterSpacing: '0.02em'
             }}
           >
-            LOOKING FOR A WEB DESIGNER<br />
-            TO CREATE A STUNNING WEBSITE?
+            LOOKING FOR A FULL-STACK DEVELOPER<br />
+            TO BUILD YOUR DREAM APPLICATION?
           </h1>
         </div>
         {/* Animated Eyes with SVG - Center */}
@@ -212,9 +212,9 @@ const Hero = () => {
               alt="Left Eyebrow" 
               className="absolute w-20 h-5 sm:w-32 sm:h-8 md:w-40 md:h-10"
               style={{ 
-                top: '-15px', 
+                top: '-25px', 
                 left: '5px',
-                transform: 'scale(0.8) sm:scale(1.1) md:scale(1.3)'
+                transform: 'scale(0.9) sm:scale(1.1) md:scale(1.3)'
               }}
             />
             
@@ -224,9 +224,9 @@ const Hero = () => {
               alt="Right Eyebrow" 
               className="absolute w-20 h-5 sm:w-32 sm:h-8 md:w-40 md:h-10"
               style={{ 
-                top: '-15px', 
+                top: '-25px', 
                 right: '5px',
-                transform: 'scale(0.8) sm:scale(1.1) md:scale(1.3)'
+                transform: 'scale(0.9) sm:scale(1.1) md:scale(1.3)'
               }}
             />
             
@@ -277,7 +277,7 @@ const Hero = () => {
     <p className="text-[10px] sm:text-sm md:text-lg font-regular text-black leading-tight" style={{ fontFamily: '"Luckiest Guy"' }}>
       IT IS YOU,<br />
       IN SEARCH OF<br />
-      A WEB DESIGNER
+      A DEVELOPER
     </p>
   </div>
 </div>
@@ -371,8 +371,8 @@ const Hero = () => {
         {/* Bottom text */}
        <div className="text-center z-20 relative mt-8">
   <p className="text-xs md:text-base text-gray-700 max-w-2xl mx-auto leading-relaxed">
-    Whether you're an expert, a startup, or a small business,<br />
-    you're in the right place for a professionally crafted website.
+    Whether you're a startup, enterprise, or growing business,<br />
+    you're in the right place for building your dream application.
   </p>
 </div>
 

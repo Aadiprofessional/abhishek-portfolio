@@ -17,12 +17,12 @@ const WhiteTransition = ({ scrollProgress }) => {
           className="flex whitespace-nowrap text-6xl font-bold text-black min-w-[200%]"
         >
           {/* Repeat enough to overflow */}
-          <span className="px-4">
-            🔥 SUPER BADASS 🔥 SUPER BADASS 🔥 SUPER BADASS 🔥 SUPER BADASS 🔥
-          </span>
-          <span className="px-4">
-             SUPER BADASS 🔥 SUPER BADASS 🔥 SUPER BADASS 🔥 SUPER BADASS 
-          </span>
+         <span className="px-4">
+  🚀 AADI SRIVASTAVA  🤖 ANDROID  🌐 WEBSITE  📱 IOS  
+</span>
+<span className="px-4">
+  🟩 NODE   🔥 FIREBASE   ☁️ GOOGLE CLOUD   🐬 SUPABASE  
+</span>
         </motion.div>
       </div>
     </motion.div>

@@ -15,6 +15,30 @@ const BottomNavbar = () => {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  const scrollToSection = (sectionName) => {
+    const sectionMap = {
+      'About': 'about-section',
+      'Work': 'projects-section',
+      'Products': 'products-section',
+      'Contact': 'webgrid-section'
+    }
+    
+    const elementId = sectionMap[sectionName]
+    if (elementId) {
+      const element = document.getElementById(elementId)
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }
+    }
+  }
+
+  const handleNavClick = (e, item) => {
+    if (location.pathname === '/' && item.name !== 'MG') {
+      e.preventDefault()
+      scrollToSection(item.name)
+    }
+  }
+
   const navItems = [
     { name: 'MG', path: '/' },
     { name: 'About', path: '/about' },
@@ -34,12 +58,13 @@ const BottomNavbar = () => {
   className="fixed bottom-6 right-1/2 z-50"
   style={{ marginRight: '-200px' }} // adjust this value based on your navbar width
 >
-  <div className="flex items-center gap-6 px-8 py-3 bg-white/10 backdrop-blur-md border border-white/20 shadow-lg rounded-xl">
+  <div className="flex items-center gap-6 px-8 py-3 bg-black/20 backdrop-blur-md border border-white/30 shadow-2xl rounded-xl ring-1 ring-black/10">
     {navItems.map((item) => (
       <Link
         key={item.name}
         to={item.path}
-        className={`text-white text-sm font-medium transition duration-200 hover:text-white/80 ${
+        onClick={(e) => handleNavClick(e, item)}
+        className={`text-white text-sm font-medium transition duration-200 hover:text-white/80 drop-shadow-sm ${
           location.pathname === item.path ? 'underline underline-offset-4' : ''
         }`}
       >

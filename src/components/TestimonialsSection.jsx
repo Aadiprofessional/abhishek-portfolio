@@ -4,34 +4,34 @@ import { motion } from 'framer-motion';
 const TestimonialsSection = () => {
   const testimonials = [
     {
-      text: "Matthis has a creative outlook in design. We can always count on him to deliver unique, interesting, and surprising designs for our brand.",
-      name: "Joe Krug",
-      role: "Founder @Finsweet",
-      img: "https://i.pravatar.cc/40?img=1",
+      text: "Abhishek's AI solutions have transformed our business operations. His innovative approach to machine learning and deep understanding of technology makes him an exceptional developer.",
+      name: "Bill Kong",
+      role: "CEO @MatrixAI",
+      img: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='20' fill='%23e11d48'/%3E%3Ctext x='20' y='26' text-anchor='middle' fill='white' font-size='16' font-weight='bold'%3EBK%3C/text%3E%3C/svg%3E",
     },
     {
-      text: "Matthis successfully created a trendy, modern, and dynamic website for the start-up Kumulus...",
-      name: "Vanessa Gallerne",
-      role: "Project Manager @CCPAGROUP",
-      img: "https://i.pravatar.cc/40?img=2",
+      text: "Working with Abhishek on backend development has been incredible. His technical expertise and problem-solving skills are outstanding. He delivers robust, scalable solutions every time.",
+      name: "Harshit",
+      role: "Backend Developer @Appyard",
+      img: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='20' fill='%2306b6d4'/%3E%3Ctext x='20' y='26' text-anchor='middle' fill='white' font-size='16' font-weight='bold'%3EH%3C/text%3E%3C/svg%3E",
     },
     {
-      text: "Matthis is an amazing professional. Very fast and talented. His best quality is being very creative!",
-      name: "Eve Kayser",
-      role: "Enterprise projects @Finsweet",
-      img: "https://i.pravatar.cc/40?img=3",
+      text: "Abhishek consistently exceeds expectations in project delivery. His attention to detail and ability to manage complex AI projects makes him an invaluable team member.",
+      name: "Shivendra Mall",
+      role: "Project Manager @Appyard",
+      img: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='20' fill='%2384cc16'/%3E%3Ctext x='20' y='26' text-anchor='middle' fill='white' font-size='16' font-weight='bold'%3ESM%3C/text%3E%3C/svg%3E",
     },
     {
-      text: "Matthis was instrumental in helping us define and refine the branding direction and user interface...",
-      name: "Jonas Beisswenger",
-      role: "Co-founder Langdock.com",
-      img: "https://i.pravatar.cc/40?img=4",
+      text: "As a co-founder, I've worked with many developers, but Abhishek's leadership in AI projects and his innovative thinking sets him apart. He's a true technology visionary.",
+      name: "Akshya Akash",
+      role: "Co-founder & Project Leader @Stimuler",
+      img: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='20' fill='%23f59e0b'/%3E%3Ctext x='20' y='26' text-anchor='middle' fill='white' font-size='16' font-weight='bold'%3EAA%3C/text%3E%3C/svg%3E",
     },
     {
-      text: "Matthis is a fantastic designer... patient, understanding, friendly, and professional.",
-      name: "Rohan Ganachari",
-      role: "Digital Operations Manager @Finsweet",
-      img: "https://i.pravatar.cc/40?img=5",
+      text: "Abhishek delivered exceptional freelance work for our AI-powered application. His professionalism, technical skills, and timely delivery made our collaboration seamless and successful.",
+      name: "Afnan & Sana",
+      role: "Freelance Clients",
+      img: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='20' fill='%238b5cf6'/%3E%3Ctext x='20' y='26' text-anchor='middle' fill='white' font-size='14' font-weight='bold'%3EA%2526S%3C/text%3E%3C/svg%3E",
     },
   ];
 
@@ -41,10 +41,9 @@ const TestimonialsSection = () => {
         {/* Left Quote */}
         <div className="md:w-1/2">
           <p className="text-4xl md:text-5xl font-semibold leading-snug">
-            It only serves to show what sort of person a man must be who can't even get testimonials.
-            No, if a man brings references, it proves nothing. If he can't, it proves a great deal.
+            Building AI solutions that transform businesses isn't just about code—it's about understanding problems deeply and crafting intelligent systems that make a real difference.
           </p>
-          <p className="mt-6 text-lg text-gray-400">— Joseph Pulitzer</p>
+          <p className="mt-6 text-lg text-gray-400">— Abhishek Srivastava, AI Developer & Innovator</p>
 
           {/* Marquee Belt */}
     <div className="mt-56 w-3xl overflow-hidden relative h-56">
@@ -61,9 +60,11 @@ const TestimonialsSection = () => {
     {Array(20).fill(0).map((_, i) => (
       <div key={i} className="flex items-center gap-12">
         <span>TESTIMONIALS</span>
-        <div className="w-40 h-40 rounded-xl bg-neutral-800 border border-white/10 flex items-center justify-center text-xs text-gray-500">
-          VIDEO
-        </div>
+        <img 
+          src="/test.gif" 
+          alt="Video content" 
+          className="w-40 h-40 rounded-xl object-cover border border-white/10"
+        />
       </div>
     ))}
   </motion.div>

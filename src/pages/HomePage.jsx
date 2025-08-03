@@ -16,6 +16,9 @@ import Footer from '../components/Footer';
 const HomePage = () => {
   const containerRef = useRef(null);
   const aboutRef = useRef(null);
+  const projectsRef = useRef(null);
+  const productsRef = useRef(null);
+  const contactRef = useRef(null);
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -51,19 +54,25 @@ const HomePage = () => {
 
       {/* Main Scrollable Content */}
       <div className="relative z-10">
-        <div ref={aboutRef}>
+        <div ref={aboutRef} id="about-section">
           <ParallaxAbout />
         </div>
 
         {isMounted && (
           <>
             <WhiteTransition scrollProgress={aboutScrollProgress} />
-            <Projects />
+            <div ref={projectsRef} id="projects-section">
+              <Projects />
+            </div>
             <BlackTransition scrollProgress={aboutScrollProgress} />
-            <GridSection />
-            <WebflowShowcase />
+            <div ref={productsRef} id="products-section">
+              <GridSection />
+              <WebflowShowcase />
+            </div>
             <CatchMeButton />
-            <TestimonialsSection />
+            <div ref={contactRef} id="contact-section">
+              <TestimonialsSection />
+            </div>
 
             {/* Spacer for Footer */}
             <div className="h-[100vh]" />
